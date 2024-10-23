@@ -73,3 +73,28 @@ Object.assign(boxElement.style, {
   width: "100%",
   height: "100%",
 });
+
+/**
+ * DOM Events: browser events, user events
+ * note: bubble events (các sự kiện nổi bọt -
+ * lắng nghe thẻ cha, khi click thẻ con 
+ * thì thực hiện cả onclick của thẻ con và thẻ cha)
+ * 
+ * https://www.w3schools.com/jsref/dom_obj_event.asp
+ * 2 ways: 
+ * 1. Attribute events
+ * <h1 onclick="console.log(this)">Heading</h1>
+ * 2. Assign event using the element node
+ *  document.querySelector().onclick = function(event){
+ *      // get clicked element: event.target
+ *      
+ * }
+
+ * 1 vài DOM events
+ * - <input type="text"> tag: 
+ *    + onchange: chỉ thực hiện khi value mới khác value trước đó - thực hiện khi unfocus input (blur)
+ *      onchange  = function(e) { console.log(e.target.value);}
+ *    + oninput: lấy value của input khi đang gõ (ko cần unfocus (blur) cũng thực hiện)
+ * - <input type="checkbox"> tag: 
+ *    onchange  = function(e) { console.log(e.target.checked);}
+ */
