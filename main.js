@@ -1,5 +1,14 @@
 // web doc: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 
+/**
+ * Falsy(convert to boolean false): false, 0, '' or "", null, undefined, NaN
+ *
+ * document.all:
+ *  + convert to boolean is false
+ *  + when compare (use === or !==) is undefined
+ *  + typeof document.all => "undefined"
+ */
+
 // includes method (only active with String, Array) => check string/element exist in String/Array
 // only support on browser versions sĩne Sep 2016
 
@@ -48,8 +57,9 @@ function testArrayEmptyElement() {
   }
 }
 
-// HTML DOM - Document Object Model
 /**
+ *
+ * HTML DOM - Document Object Model
  * - document object
  * - DOM element: find HTML elements by
  *   + id, class, tag
@@ -97,4 +107,11 @@ Object.assign(boxElement.style, {
  *    + oninput: lấy value của input khi đang gõ (ko cần unfocus (blur) cũng thực hiện)
  * - <input type="checkbox"> tag: 
  *    onchange  = function(e) { console.log(e.target.checked);}
+ * 
+ * preventDefault events: loại bỏ hành vi mặc định của browser trên các elements
+ * stopPropagation: loại bỏ bubble events
+ * 
+ * 
+ * Event Listener
+ * 
  */
