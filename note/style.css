@@ -1,0 +1,210 @@
+/* doc: https://developer.mozilla.org/en-US/ */
+/* caniuse: https://caniuse.com/ */
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.5rem;
+}
+
+/* css variable */
+:root {
+    --primary-color: #000;
+}
+
+body {
+    --black-color: black; /* local css variable */
+    background-color: var(--primary-color);  /* use global css variable*/
+    color: var(--black-color);
+}
+
+/* css unit
+ * - absolute units: 
+ *    + px (tương ứng với điểm ảnh trên thiết bị)
+ *    + pt, cm, mm, inch, pc (ít sử dụng)
+ * - relative units:
+ *    + % (0% - 100% phụ thuộc vào thẻ cha chứa nó)
+ *    + rem (phụ thuộc vào font-size thẻ html, mặc định font-size của thẻ html là 16px => 1rem = 16px)
+ *    + em (phụ thuộc vào thẻ gần nhất chứa nó có thuộc tính font-size)
+ *    + vw (viewport width) - 1vw = 1% browser's width, 100vw = 100% browser's width
+ *    + vh (viewport height) - 1vh = 1% browser's height, 100vh = 100% browser's height
+ */
+
+/*      box-sizing
+ * + content-box (default value)
+ *      width = content-width + padding left + padding right + border left + border right;
+ *          ex: style = "box-sizing: content-box; width:200px; border-width:2px; padding-width:20px;"
+ *          thì kích thước thật của element là 244px
+ * + border-box
+ *      content-width = width (nếu set width) - padding left - padding right - border left - border right;
+ *          ex: style="box-sizing: border-box; width:200px; border-width:2px; padding-width:20px;"
+ *          thì kích thước thật của element là 200px, nội dung có kích thước là 156px
+ */
+
+/*     background
+    1. background-clip: xđ background-color được áp dụng từ ranh giới nào
+     + border-box (default): đổ background từ border (ở dưới border)
+     + padding-box: đổ background từ padding (background ko ở dưới border)
+
+    2. background-image
+        - sử dụng nhiều hình ảnh làm nền: background-image: url("path1"),
+        url("path2"); // ảnh path1 sẽ đè lên ảnh path2
+        - sử dụng linear background: background-image: linear-gradient(rotation_direction, start_color, end_color);
+        có thể kết hợp với hình ảnh để tạo linear gradient cho ảnh (sử dụng rgba để có thể nhìn thấy ảnh)
+    3. backgound-size: 
+        + 100px 100%/ auto 100% / 50% auto = 50% / auto auto; // kích thước ảnh nền width height
+        + contain: lấy chiều dài nhất của ảnh với đk ko bị che khuất, ko bị cắt xén ảnh
+        + cover: lấy chiều dài nhất của ảnh, chấp nhận che khuất ảnh, cắt xén ảnh
+    4. background-repeat
+        repeat(default)/no-repeat/repeat-x/repeat-y;
+        // lặp đi lặp lại ảnh nếu ảnh nhỏ hơn kích thước element
+    5. background-origin
+        default là padding-box
+        tương tự các giá trị của background-clip nhưng áp dụng cho background-image
+    6. background-position: điều chỉnh vị trí ảnh nền 
+        center/ bottom right/ top left/ bottom = bottom center/ 10px = 10px center
+        top 20px right 20px // top right nhưng cách top 20px, cách right 20px (có thể điền giá trị âm)
+        30px 50px // cách gốc (thường gốc là top right) 30px theo ngang, 50px theo dọc
+    
+        
+    background shorthand: 
+        bg-color bg-image bg-position bg-repeat / bg-size
+*/
+
+/* CSS function
+    - var()
+    - linear-gradient()
+    - rgba()
+    - rgb()
+    - calc() // tính toán giá trị, vd: calc(120px * 2) or calc(80% + 20px)
+    - attr() // dùng với pseudo-class
+        a:after {
+            content: "attr(href)",  // lấy giá trị của attribute href 
+        }
+*/
+
+/* CSS pseudo-classes
+    + :root // tham chiếu đến root element (html)
+    + :hover 
+    + :active
+    + :first-child
+    + :last-child
+    + ...
+*/
+
+/* CSS pseudo-elements
+    tạo element ko cần viết html
+    + ::before
+    + ::after
+    + ::first-letter 
+    + ::first-line
+    + ::selection
+    + ...
+*/
+
+/* CSS position
+(dùng cùng top, left, right, bottom để định vị trí)
+    + relative // lấy vị trí ban đầu của nó để làm gốc tọa độ 
+    + absolute // lấy vị trí của phần tử cha có chứa thuộc tính position làm gốc tọa độ
+    + fixed // lấy cửa sổ trình duyệt làm gốc tọa độ (ko chiếm ko gian)
+    + sticky // làm element bám dính (kết hợp cùng scroll, ko hỗ trợ trên nhiều trình duyệt)
+        position: sticky;
+        postion:-webkit-sticky; // set dòng này để hỗ trợ trên safari
+        top:0; 
+*/
+
+/* Flexbox : https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox
+    display: flex/ inline-flex;
+
+    + main axis: hướng mà flex items sẽ được sắp xếp trong flex container (ngang/dọc)
+        main start, main end: sắp xếp thứ tự (ví dụ có 3 item 1,2,3)
+        (phụ thuộc vào hướng ngôn ngữ đọc trình duyệt trái -> phải ltr or phải -> trái rtl) 
+            start: hiển thị lần lượt là 1,2,3 
+            end: hiển thị lần lượt là 3,2,1
+        dồn tất cả theo hướng
+    + cross axis: 
+
+
+    các thuộc tính:
+    1. flex-direction: row(default)|column; // thay đổi hướng của main axis
+    2. flex-wrap: nowrap(default)|wrap|wrap-reverse; // đẩy các items xuống dòng mới?
+    3. flex-basis: <length>; set kích thước flex items main axis
+    4. justify-content: flex-start|flex-end|center|space-between|space-around|space-evenly
+        căn các items theo main axis (set ở parent)
+    5. justify-self: flex-start|flex-end|center; căn theo main axis (set riêng cho item cụ thể)
+    6. align-content: flex-start|flex-end|center; tương tự justify-content nhưng cho cross axis
+    7. align-self: flex-start|flex-end|center; tương tự như justify-selft nhưng cho cross axis
+    8. flex-grow: <number>; 
+    9. flex-shrink: <number>;
+    10. flex: <number>; 
+    // shorthand của flex-grow, flex-shrink, flex-basis
+    ex: flex: 1
+     => flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 1;
+    // (set cho item) item sẽ chiếm hết ko gian có sẵn còn lại theo main axis 
+    (nếu nhiều item thì chia theo tỉ lệ)
+    11. order: <number>; // quyết định thứ tự hiển thị (set cho item)
+     ví dụ 3 item 1,2,3
+     mặc định hiển thị là 1,2,3
+     item nào có order lớn hơn thì sẽ hiển thị trước (ví dụ item 2 có order: 2) => hiển thị 2,1,3
+    12. flex-flow // shorthand của flex-direction và flex-wrap
+     ex: flex-flow: row wrap;
+
+*/ 
+
+/* reponsive
+*/
+
+@media (min-width: 740px) {
+    .selector {
+        width: 100%;
+    }
+}
+
+/* animation
+*/
+.chart-layout {
+    margin: 36px auto 0 auto;
+    padding: 32px 0;
+    height: 320px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+.chart-layout__item {
+    align-self: flex-end;
+    width: 60px;
+    color: #fff;
+    text-align: center;
+    height: var(--percent);
+    background-color: #EF5122;
+    animation: growth ease-in 0.75s;
+}
+
+@keyframes growth {
+    from {
+        opacity: 0;
+        height: calc(var(--percent) - 50%);
+    }
+
+    to {
+        opacity: 1;
+        height: var(--percent);
+    }
+
+}
+
+
+
+

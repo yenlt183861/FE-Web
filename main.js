@@ -9,6 +9,11 @@
  *  + typeof document.all => "undefined"
  */
 
+/**
+ * Array
+ * method: for in, for of, at(), filter(), map(), reduce()
+ */
+
 // includes method (only active with String, Array) => check string/element exist in String/Array
 // only support on browser versions sĩne Sep 2016
 
