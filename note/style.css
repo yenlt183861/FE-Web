@@ -160,9 +160,11 @@ body {
     12. flex-flow // shorthand của flex-direction và flex-wrap
      ex: flex-flow: row wrap;
 
+
+    https://codepen.io/
 */ 
 
-/* reponsive
+/* responsive
 */
 
 @media (min-width: 740px) {
