@@ -78,16 +78,16 @@ function testArrayEmptyElement() {
 // add element: innerHTML (thêm vào trong), outerHTML (ghi đè chính nó)
 
 // DOM Style: CSS inline
-var boxElement = document.getElementById("test");
-boxElement.style.width = "100%";
-boxElement.style.height = "100%";
+// var boxElement = document.getElementById("test");
+// boxElement.style.width = "100%";
+// boxElement.style.height = "100%";
 
 // or
 
-Object.assign(boxElement.style, {
-  width: "100%",
-  height: "100%",
-});
+// Object.assign(boxElement.style, {
+//   width: "100%",
+//   height: "100%",
+// });
 
 /**
  * DOM Events: browser events, user events
@@ -119,4 +119,173 @@ Object.assign(boxElement.style, {
  * 
  * Event Listener
  * 
+ */
+
+// ==================================
+/**
+ *
+ * JS Function
+ */
+
+function myFunction(message) {
+  console.log(message);
+}
+
+// expression function
+var myFunc1 = function (message) {
+  console.log(message);
+};
+// arrow function
+var arrowFunc1 = (message) => {
+  console.log(message);
+};
+var arrowFunc2 = (a, b) => a + b;
+
+var arrowFunc3 = (a, b) => ({ a: a, b: b }); // return object
+
+var arrowFunc4 = (message) => console.log(message); // arrow function with only one paremeter
+
+// note 1: arrow function không có context (this)
+const courseArrowFunction = {
+  name: "JS",
+  getName: function () {
+    return this.name; // this ở đây là context, đối tượng gọi phương thức getName()
+  },
+};
+const courseArrowFunction1 = {
+  name: "JS",
+  getName: () => this, // this ở đây sẽ trả về undefined
+};
+
+// note2: arrow function không thể sử dụng để làm function constructor
+const CourseArrowFunction = function (name, price) {
+  this.name = name;
+  this.price = price;
+};
+
+const jsCourseArrowFunction = new CourseArrowFunction("JS", 100);
+
+// error
+// const errorCourseArrowFunction = (name, price) => {
+//   this.name = name;
+//   this.price = price;
+// };
+
+// ==================================
+
+/**
+ * Default parameter value (js ES6)
+ */
+
+function myDefaultFunc(message, type = "log") {
+  console[type](message);
+}
+
+// ==================================
+
+/**
+ * Template literals (js ES6)
+ */
+var tp = 1;
+var templateLiterals = `variable tp has value is ${tp}`;
+
+// ==================================
+
+/**
+ * Classes (js ES6)
+ * cách viết khác của object constructor function
+ */
+// object constructor function (1)
+function CourseObjectConstructor(name, price) {
+  this.name = name;
+  this.price = price;
+
+  this.getName = function () {
+    return this.name;
+  };
+}
+
+// class
+class CourseClass {
+  // constructor of class
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  // define a method of class
+  getName() {
+    return this.name;
+  }
+}
+
+var phpCourseObjectConstructor = new CourseObjectConstructor("PHP", 1000);
+var phpCourseClass = new CourseClass("PHP", 1000);
+
+// ==================================
+
+/**
+ * Destructuring và Rest parameters (js ES6)
+ * dùng với object và array
+ * note: phân biệt rest parameters với spread
+ *    + rest parameters: khi dùng với destructuring or định nghĩa tham số cho hàm (lấy các phần tử còn lại)
+ *    + spread: các trường hợp còn lại
+ */
+
+// Array
+var courseDestructingArray = ["JS", "PHP", "Ruby"];
+
+// syntax với array: [var1, var2, var3, ..., varN] = array; (N là kích thước mảng)
+var [
+  courseDestructingArray1,
+  courseDestructingArray2,
+  courseDestructingArray3,
+] = courseDestructingArray;
+// chỉ lấy 2 phần tử
+var [courseDestructingArray11, , courseDestructingArray33] =
+  courseDestructingArray;
+// chỉ lấy phần tử đầu tiên
+var [courseDestructingArray12] = courseDestructingArray;
+// lấy phần tử đầu tiên, và mảng chứa các phần tử còn lại (restArray là tên biến)
+var [courseDestructingArray13, ...restArray] = courseDestructingArray;
+
+// Object
+var courseDestructuringObject = {
+  name: "JS",
+  price: 12000,
+  image: "path",
+};
+// chỉ lấy name, price của object
+// note: name, price phải đúng với key của object, ko đúng thì giá trị nhận được là undefined
+var { name, price } = courseDestructuringObject;
+// Rest parameters với object
+var { name, ...restObject } = courseDestructuringObject;
+
+// object lồng object
+var courseDestructuringObject1 = {
+  name: "JS",
+  price: 12000,
+  image: "path",
+  children: {
+    name: "ReactJS",
+  },
+};
+// lấy name của parent và đổi tên thành parentName, lấy name của children
+var {
+  name: parentName,
+  children: { name },
+} = courseDestructuringObject1;
+// lấy giá trị của key, nhưng key ko tồn tại trong object => return undefinded, muốn gán giá trị mặc định
+var { description = "default value" } = courseDestructuringObject1;
+
+// example với rest parameters với tham số của function
+function logRestParameters(...params) {
+  console.log(params);
+}
+// use : logRestParameters(1,2,3); => [1,2,3]
+
+// ==================================
+
+/**
+ * Spread (js ES6)
  */
